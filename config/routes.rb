@@ -15,9 +15,10 @@ Houndapp::Application.routes.draw do
   get "/sign_out", to: "sessions#destroy"
   get "/configuration", to: "pages#configuration"
   get "/faq", to: "pages#show", id: "faq"
+  get "/recent_builds", to: "pages#show", id: "builds"
 
   resource :account, only: [:show, :update]
-  resources :builds, only: [:create]
+  resources :builds, only: [:create, :index]
 
   resources :repos, only: [:index] do
     with_options(defaults: { format: :json }) do
@@ -25,6 +26,8 @@ Houndapp::Application.routes.draw do
       resource :deactivation, only: [:create]
       resource :subscription, only: [:create, :destroy]
     end
+
+    resources :rebuilds, only: [:create]
   end
 
   with_options(defaults: { format: :json }) do
