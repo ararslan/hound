@@ -43,3 +43,7 @@ en:
       "If Hound finds any violations of your style guide it will
       comment inline on the violation in your GitHub pull
       request."
+
+  rebuilds:
+    new: "Rerun Build"
+    success: "Rebuild triggered"

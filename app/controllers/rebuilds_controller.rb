@@ -4,7 +4,7 @@ class RebuildsController < ApplicationController
       repo: repo,
       pull_request_number: pull_request_number,
     )
-    flash[:alert] = "Build triggered"
+    flash[:notice] = I18n.t("rebuilds.success")
     redirect_to builds_path
   end
 

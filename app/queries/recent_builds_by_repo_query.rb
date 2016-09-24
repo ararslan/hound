@@ -1,4 +1,6 @@
 class RecentBuildsByRepoQuery
+  NUMBER_OF_BUILDS = 20
+
   def self.run(*args)
     new(*args).run
   end
@@ -18,9 +20,9 @@ class RecentBuildsByRepoQuery
 
     @user.builds.
       includes(:repo).
-      select("builds.*").
       from(Arel.sql("(#{query}) AS builds")).
       where("rank = 1").
-      order("builds.created_at DESC")
+      order("builds.created_at DESC").
+      limit(NUMBER_OF_BUILDS)
   end
 end
